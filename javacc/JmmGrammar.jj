@@ -1,0 +1,223 @@
+PARSER_PACKAGE=pt.up.fe.comp;
+PARSER_CLASS=JmmGrammarParser;
+SMART_NODE_CREATION=false;
+TOKENS_ARE_NODES=false;
+
+
+
+SPECIAL_TOKEN : <SINGLE_LINE_COMMENT:"//" (~["\n","\r"])* ("\n"|"\r"|"\r\n") >
+                | < MULTI_LINE_COMMENT: "/*" (~["*"])* "*" (~["*","/"] (~["*"])* "*" | "*")* "/" >
+;
+
+SKIP : " " | "\t" | "\r" | "\n";
+
+TOKEN :
+		<IMPORT: "import">
+
+    |   < INT: "int" >
+    |   < BOOLEAN: "boolean" >
+    |   < INTBRACKETS: "int[]">
+    |   < STRING: "String" >
+
+    |   < COMMA: "," >
+    |   < DOT: ".">
+    |   < COLON: ":" >
+    |   < SEMICOLON: ";" >
+    |   < OPEN_SQUARE_BRACKET: "[">
+    |   < CLOSE_SQUARE_BRACKET: "]">
+    |   < OPEN_CURVE_BRACKET: "(">
+    |   < CLOSE_CURVE_BRACKET: ")">
+    |   < OPEN_BRACKET: "{">
+    |   < CLOSE_BRACKET: "}">
+
+    |   < CLASS: "class">
+    |   < PUBLIC: "public">
+    |   < STATIC: "static">
+    |   < VOID: "void">
+    |   < MAIN: "main">
+    |   < PRINTLN: "System.out.println" >
+    |   < THIS: "this" >
+    |   < EXTENDS: "extends" >
+    |   < RETURN: "return" >
+    |   < LENGTH: "length">
+    |   < NEW: "new">
+
+    |   < TRUE: "true">
+    |   < FALSE: "false">
+    |   < NOT: "!">
+    |   < AND: "&&">
+    |   < LESS: "<" >
+    |   < PLUS: "+">
+    |   < MINUS: "-">
+    |   < TIMES: "*">
+    |   < DIVIDE: "/">
+    |   < EQUALS: "=">
+
+
+    |   < IF: "if">
+    |   < ELSE: "else">
+    |   < WHILE: "while">
+
+    |   < IDENTIFIER:  ("$" | <LETTER>) ("_" | "$" | <LETTER> | <DIGIT> | <UNDERSCORE>)*
+                     | ("_" ("_" | "$" | <LETTER> | <DIGIT> | <UNDERSCORE>)+) >
+    |   < LETTER: ["a"-"z","A"-"Z"] >
+    |   < UNDERSCORE: "_" >
+    |   < INTEGERLITERAL: (<DIGIT>)+ >
+    |   < DIGIT: ["0"-"9"] >
+    ;
+
+
+Start : (ImportDeclaration)* ClassDeclaration <EOF>
+;
+
+
+
+ImportDeclaration :
+    <IMPORT> (<IDENTIFIER> ({jjtThis.put("name", lastConsumedToken.getImage());}) #Identifier)
+    (<DOT> (<IDENTIFIER> ({jjtThis.put("name", lastConsumedToken.getImage());}) #Identifier))* <SEMICOLON>
+;
+
+
+
+
+ClassDeclaration :
+    <CLASS> (<IDENTIFIER> ({jjtThis.put("name", lastConsumedToken.getImage());}) #Identifier)
+    (<EXTENDS> (<IDENTIFIER> ({jjtThis.put("name", lastConsumedToken.getImage());})) #Extend )* <OPEN_BRACKET> ( VarDeclaration )* (MethodDeclaration)* <CLOSE_BRACKET>
+;
+
+VarDeclaration :
+    (Type <IDENTIFIER> ({jjtThis.put("name", lastConsumedToken.getImage());}) #Identifier)  (<OPEN_SQUARE_BRACKET> <CLOSE_SQUARE_BRACKET>)? (<EQUALS> Expression)? <SEMICOLON>
+;
+
+Type :
+    (<INTBRACKETS> {jjtThis.put("type", lastConsumedToken.getImage());})     |
+    (<IDENTIFIER> {jjtThis.put("type", lastConsumedToken.getImage());})     |
+    (<INT>  {jjtThis.put("type", lastConsumedToken.getImage());})           |
+    (<BOOLEAN> {jjtThis.put("type", lastConsumedToken.getImage());})        |
+    (<STRING> {jjtThis.put("type", lastConsumedToken.getImage());})
+;
+
+
+MethodDeclaration :
+    <PUBLIC> (CommonMethodHeader | MainMethodHeader) <OPEN_BRACKET> MethodBody <CLOSE_BRACKET>
+;
+
+CommonMethodHeader :
+    (Type <IDENTIFIER> ({jjtThis.put("name", lastConsumedToken.getImage());}) #Identifier) <OPEN_CURVE_BRACKET>
+    ((Type <IDENTIFIER> ({jjtThis.put("name", lastConsumedToken.getImage());}) #Identifier)
+    (<COMMA> (Type <IDENTIFIER> ({jjtThis.put("name", lastConsumedToken.getImage());}) #Identifier))* )* <CLOSE_CURVE_BRACKET>
+;
+
+MainMethodHeader :
+    <STATIC> <VOID> <MAIN> <OPEN_CURVE_BRACKET> <STRING> <OPEN_SQUARE_BRACKET> <CLOSE_SQUARE_BRACKET>
+    (<IDENTIFIER> ({jjtThis.put("name", lastConsumedToken.getImage());}) #Identifier) <CLOSE_CURVE_BRACKET>
+;
+
+MethodBody :
+        (SCAN 2 VarDeclaration)* (Statement)* (Return)?
+;
+
+Return :
+    <RETURN> ExpressionStatement
+;
+
+Statement #void:
+    CompoundStatement |
+    IfStatement |
+    WhileStatement |
+    SCAN 2 Assignment |
+    ExpressionStatement
+;
+
+CompoundStatement #void: <OPEN_BRACKET> (Statement)* <CLOSE_BRACKET>
+;
+
+ExpressionStatement #void: Expression <SEMICOLON>
+;
+
+IfStatement :
+    (<IF> <OPEN_CURVE_BRACKET> Expression <CLOSE_CURVE_BRACKET> ) Statement #IfScope
+    <ELSE> Statement  #ElseScope
+;
+
+WhileStatement :
+    (<WHILE> <OPEN_CURVE_BRACKET> Expression <CLOSE_CURVE_BRACKET> ({jjtThis.put("name", lastConsumedToken.getImage());}) ) Statement
+;
+
+Assignment #void:
+    VarAccess <EQUALS> Expression #Assignment(2) <SEMICOLON>
+;
+
+VarAccess #void : (<IDENTIFIER> ({jjtThis.put("name", lastConsumedToken.getImage());}) #Identifier) (ArrayAccess #ArrayAccess(2))?
+;
+
+Expression #void: LessDeclaration ((<AND> LessDeclaration) #And(2) )*
+;
+
+LessDeclaration #void: AddSubDeclaration ((<LESS> AddSubDeclaration) #Less(2))*
+;
+
+AddSubDeclaration #void: MultDivDeclaration ( (<PLUS> MultDivDeclaration) #Plus(2) | (<MINUS> MultDivDeclaration) #Minus(2) )*
+;
+
+MultDivDeclaration #void: NotDeclaration ( (<TIMES> NotDeclaration ) #Times(2)  | (<DIVIDE> NotDeclaration) #Divide(2))*
+;
+
+NotDeclaration #void: DotArrayDeclaration | <NOT> NotDeclaration #Not(1)
+;
+
+DotArrayDeclaration #void: KeyWords (<DOT> DotDeclaration #DotAccess(2) | (ArrayAccess #ArrayAccess(2)))*
+;
+
+ArrayAccess #void: <OPEN_SQUARE_BRACKET> (Expression)? <CLOSE_SQUARE_BRACKET>
+;
+
+DotDeclaration : <LENGTH> #Length | (<IDENTIFIER> ({jjtThis.put("name", lastConsumedToken.getImage());}) #Identifier) <OPEN_CURVE_BRACKET> DotDeclarationArgs <CLOSE_CURVE_BRACKET>
+;
+
+DotDeclarationArgs : (Expression (<COMMA> Expression)*)?
+;
+
+KeyWords #void:  <TRUE> #True |
+            <FALSE> #False|
+            ThisDeclaration |
+            NewDeclaration |
+            <OPEN_CURVE_BRACKET> Expression <CLOSE_CURVE_BRACKET> |
+            (<INTEGERLITERAL> ({jjtThis.put("name", lastConsumedToken.getImage());}) #Number)|
+            (<IDENTIFIER> ({jjtThis.put("name", lastConsumedToken.getImage());}) #Identifier)
+;
+
+ThisDeclaration : <THIS> (<IDENTIFIER> ({jjtThis.put("name", lastConsumedToken.getImage());}) #Identifier)?
+;
+
+
+NewDeclaration : <NEW> (<INT> #Int ArrayAccess #ArrayAccess(2) | (<IDENTIFIER> ({jjtThis.put("name", lastConsumedToken.getImage());}) #Identifier) <OPEN_CURVE_BRACKET> <CLOSE_CURVE_BRACKET>)
+;
+
+
+INJECT BaseNode :
+        import pt.up.fe.comp.jmm.ast.JmmNode;
+        import pt.up.fe.comp.jmm.ast.AJmmNode;
+        import pt.up.fe.specs.util.SpecsCollections;
+        extends AJmmNode
+{
+    @Override
+    public List<JmmNode> getChildren() {
+
+        return SpecsCollections.cast(children(), JmmNode.class);
+    }
+
+    @Override
+    public void add(JmmNode child, int index) {
+
+        if (child instanceof Node) {
+
+            addChild(index, (Node) child);
+        } else {
+
+            throw new RuntimeException("Node " + child + " is not a Node.");
+        }
+
+    }
+}
+

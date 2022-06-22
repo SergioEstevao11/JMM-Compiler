@@ -1,0 +1,511 @@
+{
+  "rootNode": {
+    "kind": "Start",
+    "attributes": {},
+    "children": [
+      {
+        "kind": "ImportDeclaration",
+        "attributes": {},
+        "children": [
+          {
+            "kind": "Identifier",
+            "attributes": {
+              "name": "ioPlus"
+            },
+            "children": []
+          }
+        ]
+      },
+      {
+        "kind": "ClassDeclaration",
+        "attributes": {},
+        "children": [
+          {
+            "kind": "Identifier",
+            "attributes": {
+              "name": "IfWhileNested"
+            },
+            "children": []
+          },
+          {
+            "kind": "MethodDeclaration",
+            "attributes": {},
+            "children": [
+              {
+                "kind": "CommonMethodHeader",
+                "attributes": {},
+                "children": [
+                  {
+                    "kind": "Type",
+                    "attributes": {
+                      "type": "int"
+                    },
+                    "children": []
+                  },
+                  {
+                    "kind": "Identifier",
+                    "attributes": {
+                      "name": "func"
+                    },
+                    "children": []
+                  },
+                  {
+                    "kind": "Type",
+                    "attributes": {
+                      "type": "int"
+                    },
+                    "children": []
+                  },
+                  {
+                    "kind": "Identifier",
+                    "attributes": {
+                      "name": "a"
+                    },
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "kind": "MethodBody",
+                "attributes": {},
+                "children": [
+                  {
+                    "kind": "VarDeclaration",
+                    "attributes": {},
+                    "children": [
+                      {
+                        "kind": "Type",
+                        "attributes": {
+                          "type": "int"
+                        },
+                        "children": []
+                      },
+                      {
+                        "kind": "Identifier",
+                        "attributes": {
+                          "name": "i"
+                        },
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "VarDeclaration",
+                    "attributes": {},
+                    "children": [
+                      {
+                        "kind": "Type",
+                        "attributes": {
+                          "type": "boolean"
+                        },
+                        "children": []
+                      },
+                      {
+                        "kind": "Identifier",
+                        "attributes": {
+                          "name": "flag"
+                        },
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "Assignment",
+                    "attributes": {},
+                    "children": [
+                      {
+                        "kind": "Identifier",
+                        "attributes": {
+                          "name": "flag"
+                        },
+                        "children": []
+                      },
+                      {
+                        "kind": "True",
+                        "attributes": {},
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "Assignment",
+                    "attributes": {},
+                    "children": [
+                      {
+                        "kind": "Identifier",
+                        "attributes": {
+                          "name": "i"
+                        },
+                        "children": []
+                      },
+                      {
+                        "kind": "Number",
+                        "attributes": {
+                          "name": "0"
+                        },
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "WhileStatement",
+                    "attributes": {
+                      "name": ")"
+                    },
+                    "children": [
+                      {
+                        "kind": "Less",
+                        "attributes": {},
+                        "children": [
+                          {
+                            "kind": "Identifier",
+                            "attributes": {
+                              "name": "i"
+                            },
+                            "children": []
+                          },
+                          {
+                            "kind": "Identifier",
+                            "attributes": {
+                              "name": "a"
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "IfStatement",
+                        "attributes": {},
+                        "children": [
+                          {
+                            "kind": "Identifier",
+                            "attributes": {
+                              "name": "flag"
+                            },
+                            "children": []
+                          },
+                          {
+                            "kind": "IfScope",
+                            "attributes": {},
+                            "children": [
+                              {
+                                "kind": "DotAccess",
+                                "attributes": {},
+                                "children": [
+                                  {
+                                    "kind": "Identifier",
+                                    "attributes": {
+                                      "name": "ioPlus"
+                                    },
+                                    "children": []
+                                  },
+                                  {
+                                    "kind": "DotDeclaration",
+                                    "attributes": {},
+                                    "children": [
+                                      {
+                                        "kind": "Identifier",
+                                        "attributes": {
+                                          "name": "printResult"
+                                        },
+                                        "children": []
+                                      },
+                                      {
+                                        "kind": "DotDeclarationArgs",
+                                        "attributes": {},
+                                        "children": [
+                                          {
+                                            "kind": "Number",
+                                            "attributes": {
+                                              "name": "1"
+                                            },
+                                            "children": []
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "kind": "ElseScope",
+                            "attributes": {},
+                            "children": [
+                              {
+                                "kind": "DotAccess",
+                                "attributes": {},
+                                "children": [
+                                  {
+                                    "kind": "Identifier",
+                                    "attributes": {
+                                      "name": "ioPlus"
+                                    },
+                                    "children": []
+                                  },
+                                  {
+                                    "kind": "DotDeclaration",
+                                    "attributes": {},
+                                    "children": [
+                                      {
+                                        "kind": "Identifier",
+                                        "attributes": {
+                                          "name": "printResult"
+                                        },
+                                        "children": []
+                                      },
+                                      {
+                                        "kind": "DotDeclarationArgs",
+                                        "attributes": {},
+                                        "children": [
+                                          {
+                                            "kind": "Number",
+                                            "attributes": {
+                                              "name": "2"
+                                            },
+                                            "children": []
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "Assignment",
+                        "attributes": {},
+                        "children": [
+                          {
+                            "kind": "Identifier",
+                            "attributes": {
+                              "name": "flag"
+                            },
+                            "children": []
+                          },
+                          {
+                            "kind": "Not",
+                            "attributes": {},
+                            "children": [
+                              {
+                                "kind": "Identifier",
+                                "attributes": {
+                                  "name": "flag"
+                                },
+                                "children": []
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "Assignment",
+                        "attributes": {},
+                        "children": [
+                          {
+                            "kind": "Identifier",
+                            "attributes": {
+                              "name": "i"
+                            },
+                            "children": []
+                          },
+                          {
+                            "kind": "Plus",
+                            "attributes": {},
+                            "children": [
+                              {
+                                "kind": "Identifier",
+                                "attributes": {
+                                  "name": "i"
+                                },
+                                "children": []
+                              },
+                              {
+                                "kind": "Number",
+                                "attributes": {
+                                  "name": "1"
+                                },
+                                "children": []
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "Return",
+                    "attributes": {},
+                    "children": [
+                      {
+                        "kind": "Number",
+                        "attributes": {
+                          "name": "1"
+                        },
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "MethodDeclaration",
+            "attributes": {},
+            "children": [
+              {
+                "kind": "MainMethodHeader",
+                "attributes": {},
+                "children": [
+                  {
+                    "kind": "Identifier",
+                    "attributes": {
+                      "name": "args"
+                    },
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "kind": "MethodBody",
+                "attributes": {},
+                "children": [
+                  {
+                    "kind": "VarDeclaration",
+                    "attributes": {},
+                    "children": [
+                      {
+                        "kind": "Type",
+                        "attributes": {
+                          "type": "IfWhileNested"
+                        },
+                        "children": []
+                      },
+                      {
+                        "kind": "Identifier",
+                        "attributes": {
+                          "name": "d"
+                        },
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "VarDeclaration",
+                    "attributes": {},
+                    "children": [
+                      {
+                        "kind": "Type",
+                        "attributes": {
+                          "type": "int"
+                        },
+                        "children": []
+                      },
+                      {
+                        "kind": "Identifier",
+                        "attributes": {
+                          "name": "a"
+                        },
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "Assignment",
+                    "attributes": {},
+                    "children": [
+                      {
+                        "kind": "Identifier",
+                        "attributes": {
+                          "name": "d"
+                        },
+                        "children": []
+                      },
+                      {
+                        "kind": "NewDeclaration",
+                        "attributes": {},
+                        "children": [
+                          {
+                            "kind": "Identifier",
+                            "attributes": {
+                              "name": "IfWhileNested"
+                            },
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "Assignment",
+                    "attributes": {},
+                    "children": [
+                      {
+                        "kind": "Identifier",
+                        "attributes": {
+                          "name": "a"
+                        },
+                        "children": []
+                      },
+                      {
+                        "kind": "DotAccess",
+                        "attributes": {},
+                        "children": [
+                          {
+                            "kind": "Identifier",
+                            "attributes": {
+                              "name": "d"
+                            },
+                            "children": []
+                          },
+                          {
+                            "kind": "DotDeclaration",
+                            "attributes": {},
+                            "children": [
+                              {
+                                "kind": "Identifier",
+                                "attributes": {
+                                  "name": "func"
+                                },
+                                "children": []
+                              },
+                              {
+                                "kind": "DotDeclarationArgs",
+                                "attributes": {},
+                                "children": [
+                                  {
+                                    "kind": "Number",
+                                    "attributes": {
+                                      "name": "3"
+                                    },
+                                    "children": []
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "reports": [],
+  "config": {
+    "inputFile": "/home/sergio/Documents/FEUP/COMP/comp2022-9g/test/fixtures/public/cpf/4_jasmin/control_flow/IfWhileNested.jmm",
+    "debug": "false",
+    "optimize": "false",
+    "registerAllocation": "-1"
+  }
+}

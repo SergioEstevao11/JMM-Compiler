@@ -1,0 +1,16 @@
+import io;
+
+class B {
+	int a;
+	public int getA(){
+		return a;
+	}
+
+	
+	public static void main(String[] args){
+		B b;
+		b = new B();
+		b.setA(20);
+		io.println(b.compareSelf());
+	}
+}

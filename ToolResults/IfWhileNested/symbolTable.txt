@@ -1,0 +1,11 @@
+Class: IfWhileNested
+Super: java.lang.Object
+
+Imports:
+ - ioPlus
+
+Fields: <no fields>
+
+Methods: 2
+ - signature: func; returnType: int; params: int a; local vars: int i, boolean flag
+ - signature: main; returnType: void; params: String[] args; local vars: IfWhileNested d, int a
